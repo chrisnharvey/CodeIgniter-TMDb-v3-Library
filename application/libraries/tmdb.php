@@ -201,7 +201,12 @@ class Tmdb
 	/********************************
 	 *		   	   Misc			 	*
 	 ********************************/
-	 
+	
+	public function configuration()
+	{
+		return $this->_call('configuration');
+	}
+	
 	public function latest_movie()
 	{
 		return $this->_call('latest/movie');
