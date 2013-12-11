@@ -83,67 +83,92 @@ class Tmdb
 	 ********************************/
 	
 	public function collection($id)
-	{
+	{	
 		return $this->_call('collection/' . $id);
 	}
 	
-	public function movie_info($id)
-	{
-		return $this->_call('movie/' . $id);
-	}
-	
-	public function movie_alternate_titles($id, $country = NULL)
+	public function movie_info($id, $append = NULL)
 	{
 		$params = array(
-			'country' => $country
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('movie/' . $id, $params);
+	}
+	
+	public function movie_alternate_titles($id, $country = NULL, $append = NULL)
+	{
+		$params = array(
+			'country'		=> $country,
+			'append_to_response'	=> $append
 		);
 		
 		return $this->_call('movie/' . $id . '/alternative_titles', $params);
 	}
 	
-	public function movie_casts($id)
-	{
-		return $this->_call('movie/' . $id . '/casts');
-	}
-	
-	public function movie_images($id, $country = NULL)
+	public function movie_casts($id, $append = NULL)
 	{
 		$params = array(
-			'country' => $country
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('movie/' . $id . '/casts', $params);
+	}
+	
+	public function movie_images($id, $country = NULL, $append = NULL)
+	{
+		$params = array(
+			'country'		=> $country,
+			'append_to_response'	=> $append
 		);
 		
 		return $this->_call('movie/' . $id . '/images', $params);
 	}
 	
-	public function movie_keywords($id)
-	{
-		return $this->_call('movie/' . $id . '/keywords');
-	}
-	
-	public function movie_releases($id)
-	{
-		return $this->_call('movie/' . $id . '/releases');
-	}
-
-	public function movie_trailers($id, $language = NULL)
+	public function movie_keywords($id, $append = NULL)
 	{
 		$params = array(
-			'language' => $language
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('movie/' . $id . '/keywords', $params);
+	}
+	
+	public function movie_releases($id, $append = NULL)
+	{
+		$params = array(
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('movie/' . $id . '/releases', $params);
+	}
+
+	public function movie_trailers($id, $language = NULL, $append = NULL)
+	{
+		$params = array(
+			'language'		=> $language,
+			'append_to_response'	=> $append
 		);
 		
 		return $this->_call('movie/' . $id . '/trailers', $params);
 	}
 	
-	public function movie_translations($id, $language = NULL)
-	{
-		return $this->_call('movie/' . $id . '/translations');
-	}
-	
-	public function movie_similar($id, $page = 1, $language = NULL)
+	public function movie_translations($id, $language = NULL, $append = NULL)
 	{
 		$params = array(
-			'page'		=> $page,
-			'language'	=> $language
+			'language'		=> $language,
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('movie/' . $id . '/translations', $params);
+	}
+	
+	public function movie_similar($id, $page = 1, $language = NULL, $append = NULL)
+	{
+		$params = array(
+			'page'			=> $page,
+			'language'		=> $language,
+			'append_to_response'	=> $params
 		);
 		
 		return $this->_call('movie/' . $id . '/similar_movies', $params);
@@ -155,15 +180,20 @@ class Tmdb
 	 *		  	 People		 		*
 	 ********************************/
 	 
-	public function person_info($id)
-	{
-		return $this->_call('person/' . $id);
-	}
-	
-	public function person_credits($id, $language = NULL)
+	public function person_info($id, $append = NULL)
 	{
 		$params = array(
-			'language' => $language
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('person/' . $id, $params);
+	}
+	
+	public function person_credits($id, $language = NULL, $append = NULL)
+	{
+		$params = array(
+			'language'		=> $language,
+			'append_to_response'	=> $append
 		);
 		
 		return $this->_call('person/' . $id . '/credits', $params);
@@ -181,16 +211,21 @@ class Tmdb
 	 *		  	 Companies	 		*
 	 ********************************/
 	 
-	public function company_info($id)
-	{
-		return $this->_call('company/' . $id);
-	}
-	
-	public function company_movies($id, $page = 1, $language = NULL)
+	public function company_info($id, $append = NULL)
 	{
 		$params = array(
-			'page'		=> $page,
-			'language'	=> $language
+			'append_to_response'	=> $append
+		);
+		
+		return $this->_call('company/' . $id, $params);
+	}
+	
+	public function company_movies($id, $page = 1, $language = NULL, $append = NULL)
+	{
+		$params = array(
+			'page'			=> $page,
+			'language'		=> $language,
+			'append_to_response'	=> $params
 		);
 		
 		return $this->_call('company/' . $id . '/movies', $params);
@@ -201,7 +236,12 @@ class Tmdb
 	/********************************
 	 *		   	   Misc			 	*
 	 ********************************/
-	 
+	
+	public function configuration()
+	{
+		return $this->_call('configuration');
+	}
+	
 	public function latest_movie()
 	{
 		return $this->_call('latest/movie');
